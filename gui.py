@@ -60,7 +60,7 @@ class window:
         self.boton2 = tk.Button(self.cv, text="Sacrificar")#, command = self.sacrificar(self.j1,self.diccionario))
         self.boton2.configure(width=10, activebackground="white")
         self.boton2_window = self.cv.create_window(520, 700, anchor=tk.NW, window=self.boton2)
-        self.boton2.bind('<Button-1>,', self.tributeA)
+        self.boton2.bind('<Button-1>', self.tributeA)
 
         self.boton3 = tk.Button(self.cv, text="Atacar")#, command = self.ataque(self.j2,self.j1,self.diccionario))
         self.boton3.configure(width=10, activebackground="white")
@@ -114,12 +114,14 @@ class window:
 
     def tributeA(self, event):
         self.j1.UseTribute(self.diccionario)
+        self.textTrib1.set(str(self.j1.sacrificios))
         #Enzi
         self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
         self.cv.update()
 
     def tributeB(self, event):
         self.j2.UseTribute(self.diccionario)
+        self.textTrib2.set(str(self.j2.sacrificios))
         #Enzi
         self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
         self.cv.update()
