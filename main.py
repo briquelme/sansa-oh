@@ -6,11 +6,10 @@ root = tk.Tk()
 root.title("Sansa-Oh")
 #root.attributes('-fullscreen', True)
 root.wm_state('zoomed')
-'''n1,a1,d1 = mazo[1]
-n2,a2,d2 = mazo[2]
-ju1 = cards.jugador(n1,a1,d1)
-ju2 = cards.jugador(n2,a2,d2)'''
+tupla1 = cards.cardchooser(mazo)
+tupla2 = cards.cardchooser(mazo)
 
 
-test = gui.window(mazo[1], mazo[2], mazo)
+
+test = gui.window(tupla1,tupla2, mazo)
 root.mainloop()
