@@ -1,7 +1,12 @@
 enzi 3500 3200
-camilo 4500 5000
+camilo 4500 4500
 bahamondes 3500 2000
 benja 4500 1000
 darcy 3000 3000
 pacha 1500 3500
 vago 1000 1000
+chikorita 1 1
+luna 3000 3000
+paro 3500 2001
+pepe 2500 3500
+tenis 3000 2000

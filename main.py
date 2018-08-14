@@ -9,7 +9,7 @@ root.wm_state('zoomed')
 tupla1 = cards.cardchooser(mazo)
 tupla2 = cards.cardchooser(mazo)
 
+lives = int(input("Ingrese cantidad de vidas: "))
 
-
-test = gui.window(tupla1,tupla2, mazo)
+test = gui.window(tupla1,tupla2, mazo,lives)
 root.mainloop()

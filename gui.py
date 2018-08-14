@@ -2,9 +2,9 @@ import tkinter as tk
 import cards
 class window:
 
-    def __init__(self,deck1,deck2,diccionario):
-        self.j1 = cards.jugador(deck1[0], deck1[1], deck1[2])
-        self.j2 = cards.jugador(deck2[0], deck2[1], deck2[2])
+    def __init__(self,deck1,deck2,diccionario, vidas = 3):
+        self.j1 = cards.jugador(deck1[0], deck1[1], deck1[2],vidas)
+        self.j2 = cards.jugador(deck2[0], deck2[1], deck2[2],vidas)
 
 
         print(type(self.j2))
