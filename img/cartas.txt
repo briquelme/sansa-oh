@@ -1,5 +1,5 @@
 enzi 3500 3200
-camilo 4500 4500
+camilo 4500 3499
 bahamondes 3500 2000
 benja 4500 1000
 darcy 3000 3000
