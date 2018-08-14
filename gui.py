@@ -20,6 +20,38 @@ class window:
         self.cv.pack(side='top', fill='both', expand='yes')
         self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
         self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
+        
+        self.textHP1 = tk.StringVar()
+        self.textHP2 = tk.StringVar()#Para pasar vidas de los jugadores a tkinter
+
+        self.textHP1.set(str(self.j1.vida))
+        self.textHP2.set(str(self.j2.vida))#inicializar vidas para tkinter
+
+        self.HP1Head = tk.Label(self.cv, text = 'Vidas: ')
+        self.HP1Head.place(x = 420, y= 740, anchor = tk.NW)
+        self.HP2Head = tk.Label(self.cv, text = 'Vidas: ')
+        self.HP2Head.place(x = 920, y= 740, anchor = tk.NW)#titulos para vida
+        
+        self.HP1Display = tk.Label(self.cv, textvariable = self.textHP1)
+        self.HP1Display.place (x = 520, y = 740, anchor = tk.NW)
+        self.HP2Display = tk.Label(self.cv, textvariable = self.textHP2)
+        self.HP2Display.place (x = 1020, y = 740, anchor = tk.NW)#display dinamicos para vidas
+
+        self.textTrib1 = tk.StringVar()
+        self.textTrib2 = tk.StringVar()#variables para pasar sacrificios a tkinter
+
+        self.textTrib1.set(str(self.j1.sacrificios))
+        self.textTrib2.set(str(self.j2.sacrificios))#inicializar sacrificios tkinter
+
+        self.Trib1Head = tk.Label(self.cv, text = 'Sacrificios: ')
+        self.Trib1Head.place(x = 420, y= 761, anchor = tk.NW)
+        self.Trib2Head = tk.Label(self.cv, text = 'Sacrificios: ')
+        self.Trib2Head.place(x = 920, y= 761, anchor = tk.NW)#titulos para sacrificios
+
+        self.Trib1Display = tk.Label(self.cv, textvariable = self.textTrib1)
+        self.Trib1Display.place (x = 520, y = 761, anchor = tk.NW)
+        self.Trib2Display = tk.Label(self.cv, textvariable = self.textTrib2)
+        self.Trib2Display.place (x = 1020, y = 761, anchor = tk.NW)#display dinamicos para sacrificios
 
         self.boton1 = tk.Button(self.cv, text="Atacar")#, command = self.ataque(self.j1, self.j2, self.diccionario))
         self.boton1.configure(width=10, activebackground="white")
@@ -29,6 +61,7 @@ class window:
         self.boton2 = tk.Button(self.cv, text="Sacrificar")#, command = self.sacrificar(self.j1,self.diccionario))
         self.boton2.configure(width=10, activebackground="white")
         self.boton2_window = self.cv.create_window(520, 700, anchor=tk.NW, window=self.boton2)
+        self.boton2.bind('<Button-1>,', self.tributeA)
 
         self.boton3 = tk.Button(self.cv, text="Atacar")#, command = self.ataque(self.j2,self.j1,self.diccionario))
         self.boton3.configure(width=10, activebackground="white")
@@ -38,6 +71,7 @@ class window:
         self.boton4 = tk.Button(self.cv, text="Sacrificar")#, command = self.sacrificar(self.j2,self.diccionario))
         self.boton4.configure(width=10, activebackground="white")
         self.boton4_window =self.cv.create_window(1020, 700, anchor=tk.NW, window=self.boton4)
+        self.boton4.bind('<Button-1>', self.tributeB)
 
     def attackA(self, event):
         attack  = self.j1.getAtk()
@@ -51,6 +85,10 @@ class window:
         else:
             self.j1.ChangeCard(self.diccionario)
             self.j2.ChangeCard(self.diccionario)
+        print(self.j1.vida)
+        print(self.j2.vida)
+        self.textHP1.set(str(self.j1.vida))
+        self.textHP2.set(str(self.j2.vida))
         self.cv.update()
 
     def attackB(self, event):
@@ -65,6 +103,8 @@ class window:
         else:
             self.j1.ChangeCard(self.diccionario)
             self.j2.ChangeCard(self.diccionario)
+        self.textHP1.set(str(self.j1.vida))
+        self.textHP2.set(str(self.j2.vida))
         self.cv.update()
 
     def tributeA(self, event):

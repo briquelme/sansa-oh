@@ -4,6 +4,8 @@ import tkinter as tk
 mazo,cant = cards.cardgen()
 root = tk.Tk()
 root.title("Sansa-Oh")
+#root.attributes('-fullscreen', True)
+root.wm_state('zoomed')
 '''n1,a1,d1 = mazo[1]
 n2,a2,d2 = mazo[2]
 ju1 = cards.jugador(n1,a1,d1)
