@@ -1,2 +1,7 @@
-enzi 100 200
-camilo 300 400
+enzi 3500 3200
+camilo 4500 5000
+bahamondes 3500 2000
+benja 4500 1000
+darcy 3000 3000
+pacha 1500 3500
+vago 1000 1000
