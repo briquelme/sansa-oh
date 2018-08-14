@@ -37,6 +37,8 @@ class jugador:
         self.card = carta(n,a,d)
         self.sacrificios = int(vida/2)
 
+    def getVida(self):
+        return self.vida
     def getAtk(self):
         return self.card.getAtk()
     def getDef(self):

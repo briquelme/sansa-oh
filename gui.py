@@ -2,22 +2,29 @@ import tkinter as tk
 import cards
 class window:
 
-    def __init__(self,deck1,deck2,diccionario, vidas = 3):
+    def __init__(self,deck1,deck2,diccionario,turno, vidas = 3):
         self.j1 = cards.jugador(deck1[0], deck1[1], deck1[2],vidas)
         self.j2 = cards.jugador(deck2[0], deck2[1], deck2[2],vidas)
-
-
-        print(type(self.j2))
-        print(type(self.j2.card))
-        print(type(self.j2.getDef()))
-
-
+        self.turno = turno
         self.diccionario = diccionario
         self.cv = tk.Canvas()
         self.cv.pack(side='top', fill='both', expand='yes')
         self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
         self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
-        
+
+        self.textVictoria = tk.StringVar()
+        self.textVictoria.set("No hay Ganador aun")
+        self.VictoriaDisplay = tk.Label(self.cv,textvariable = self.textVictoria)
+        self.VictoriaDisplay.place(x = 5, y = 300, anchor = tk.NW)
+
+        self.textTurno = tk.StringVar()
+        self.textTurno.set(self.turno)
+
+        self.TurnoHead = tk.Label(self.cv,text = "Turno Actual: ")
+        self.TurnoHead.place(x= 700, y= 650, anchor = tk.NW)
+        self.TurnoDisplay = tk.Label(self.cv, textvariable = self.textTurno)
+        self.TurnoDisplay.place(x = 780, y= 650, anchor = tk.NW)
+
         self.textHP1 = tk.StringVar()
         self.textHP2 = tk.StringVar()#Para pasar vidas de los jugadores a tkinter
 
@@ -71,55 +78,79 @@ class window:
         self.boton4.bind('<Button-1>', self.tributeB)
 
     def attackA(self, event):
-        attack  = self.j1.getAtk()
-        defense = self.j2.getDef()
-        if attack > defense:
-            self.j2.Hit()
-            self.j2.ChangeCard(self.diccionario)
-        elif attack < defense:
-            self.j1.Hit()
-            self.j1.ChangeCard(self.diccionario)
-        else:
-            self.j1.ChangeCard(self.diccionario)
-            self.j2.ChangeCard(self.diccionario)
-        print(self.j1.vida)
-        print(self.j2.vida)
-        self.textHP1.set(str(self.j1.vida))
-        self.textHP2.set(str(self.j2.vida))
+        if self.turno == "j1":
+            attack  = self.j1.getAtk()
+            defense = self.j2.getDef()
+            if attack > defense:
+                self.j2.Hit()
+                self.j2.ChangeCard(self.diccionario)
+            elif attack < defense:
+                self.j1.Hit()
+                self.j1.ChangeCard(self.diccionario)
+            else:
+                self.j1.ChangeCard(self.diccionario)
+                self.j2.ChangeCard(self.diccionario)
+            self.textHP1.set(str(self.j1.vida))
+            self.textHP2.set(str(self.j2.vida))
         #Enzi
-        self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
-        self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
-        self.cv.update()
+            self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
+            self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
+            self.turno = "j2"
+            self.checkear()
+            self.textTurno.set(self.turno)
+            self.cv.update()
 
     def attackB(self, event):
-        attack  = self.j2.getAtk()
-        defense = self.j1.getDef()
-        if attack > defense:
-            self.j1.Hit()
-            self.j1.ChangeCard(self.diccionario)
-        elif attack < defense:
-            self.j2.Hit()
-            self.j2.ChangeCard(self.diccionario)
-        else:
-            self.j1.ChangeCard(self.diccionario)
-            self.j2.ChangeCard(self.diccionario)
-        self.textHP1.set(str(self.j1.vida))
-        self.textHP2.set(str(self.j2.vida))
+        if self.turno == "j2":
+            attack  = self.j2.getAtk()
+            defense = self.j1.getDef()
+            if attack > defense:
+                self.j1.Hit()
+                self.j1.ChangeCard(self.diccionario)
+            elif attack < defense:
+                self.j2.Hit()
+                self.j2.ChangeCard(self.diccionario)
+            else:
+                self.j1.ChangeCard(self.diccionario)
+                self.j2.ChangeCard(self.diccionario)
+            self.textHP1.set(str(self.j1.vida))
+            self.textHP2.set(str(self.j2.vida))
         #Enzi
-        self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
-        self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
-        self.cv.update()
+            self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
+            self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
+            self.turno = "j1"
+            self.checkear()
+            self.textTurno.set(self.turno)
+            self.cv.update()
 
     def tributeA(self, event):
-        self.j1.UseTribute(self.diccionario)
-        self.textTrib1.set(str(self.j1.sacrificios))
+        if self.turno == "j1":
+            self.j1.UseTribute(self.diccionario)
+            self.textTrib1.set(str(self.j1.sacrificios))
         #Enzi
-        self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
-        self.cv.update()
+            self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
+            self.turno = "j2"
+            self.textTurno.set(self.turno)
+            self.cv.update()
 
     def tributeB(self, event):
-        self.j2.UseTribute(self.diccionario)
-        self.textTrib2.set(str(self.j2.sacrificios))
+        if self.turno == "j2":
+            self.j2.UseTribute(self.diccionario)
+            self.textTrib2.set(str(self.j2.sacrificios))
         #Enzi
-        self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
-        self.cv.update()
+            self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
+            self.turno = "j1"
+            self.textTurno.set(self.turno)
+            self.cv.update()
+
+    def checkear(self):
+        if self.j1.getVida() == 0:
+            self.textVictoria.set("Jugador 2 ha Ganado \n puede salir del juego")
+            self.turno = "Fin Partida"
+            self.cv.update()
+        elif self.j2.getVida() == 0:
+            self.textVictoria.set("Jugador 1 ha Ganado \npuede salir del juego")
+            self.turno = "Fin Partida"
+            self.cv.update()
+
+
