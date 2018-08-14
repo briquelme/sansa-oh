@@ -7,8 +7,7 @@ class window:
         n2,a2,d2 = deck2'''
         self.j1 = cards.jugador(deck1[0], deck1[1], deck1[2])
         self.j2 = cards.jugador(deck2[0], deck2[1], deck2[2])
-        '''self.j1 = j1
-        self.j2 = j2'''
+
 
         print(type(self.j2))
         print(type(self.j2.card))
@@ -89,6 +88,9 @@ class window:
         print(self.j2.vida)
         self.textHP1.set(str(self.j1.vida))
         self.textHP2.set(str(self.j2.vida))
+        #Enzi
+        self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
+        self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
         self.cv.update()
 
     def attackB(self, event):
@@ -105,12 +107,19 @@ class window:
             self.j2.ChangeCard(self.diccionario)
         self.textHP1.set(str(self.j1.vida))
         self.textHP2.set(str(self.j2.vida))
+        #Enzi
+        self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
+        self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
         self.cv.update()
 
     def tributeA(self, event):
         self.j1.UseTribute(self.diccionario)
+        #Enzi
+        self.cv.create_image(300, 10, image=self.j1.card.photo, anchor='nw')
         self.cv.update()
 
     def tributeB(self, event):
         self.j2.UseTribute(self.diccionario)
+        #Enzi
+        self.cv.create_image(800, 10, image=self.j2.card.photo, anchor='nw')
         self.cv.update()

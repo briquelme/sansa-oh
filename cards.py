@@ -35,7 +35,7 @@ class jugador:
     def __init__(self,n,a,d,vida = 3):
         self.vida = vida
         self.card = carta(n,a,d)
-        self.sacrificios = int(vida/2 - 1)
+        self.sacrificios = int(vida/2)
 
     def getAtk(self):
         return self.card.getAtk()
