@@ -3,8 +3,6 @@ import cards
 class window:
 
     def __init__(self,deck1,deck2,diccionario):
-        '''n1,a1,d1 = deck1
-        n2,a2,d2 = deck2'''
         self.j1 = cards.jugador(deck1[0], deck1[1], deck1[2])
         self.j2 = cards.jugador(deck2[0], deck2[1], deck2[2])
 
