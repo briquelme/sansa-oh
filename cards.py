@@ -1,10 +1,10 @@
-from PIL import Image,ImageTk
-from random import randint
-
 """Código para el manejo de cartas usadas en el juego.
 Se espera que las imágenes residan en la carpeta 'img/', acompañadas del
 archivo 'cartas.txt'. Para mas detalles, referir al README.
 """
+from PIL import Image,ImageTk
+from random import randint
+
 
 def cardgen():
     """Generador de diccionario de cartas, creadas a partir del archivo 'cartas.txt'. Cada carta
