@@ -55,6 +55,14 @@ class carta:
 
     Almacena datos importantes a nivel de jugabilidad (ATK y DEF) junto a elementos de la
     interfaz (directorio de imagen y estructuras para presentar la imagen en pantalla)
+    
+    Attributes:
+        nombre(str) : nombre del archivo de imagen.
+        ataque(int) : ATK.
+        defensa(int) : DEF.
+        filepath(str) : Dirección relativa donde reside la imagen.
+        im(PIL.Image.Image) : Representación de imagen en Pillow.
+        photo(PIL.ImageTk) : Representación de imagen en Pillow compatible con Tkinter
     """
     def __init__(self,nombre,atk,df):
         self.nombre = nombre
@@ -81,6 +89,11 @@ class jugador:
     """Clase que representa los atributos de un jugador.
 
     Almacena datos importantes a nivel de jugabilidad, correspondiente a vida, carta actual y sacrificios disponibles
+
+    Attributes: 
+        vida (int) : Puntos de vida del jugador. Una vez llega a 0, se considera al jugador como derrotado.
+        card ([str, int, int]) : Carta en juego del jugador. Corresponde a valor entregado al usar 'cardchooser'
+        sacrificios (int) : Puntos de sacrificio. Al usar un punto, el jugador puede cambiar manualmente su carta en juego.
     """
     def __init__(self,n,a,d,vida = 3):
         self.vida = vida
