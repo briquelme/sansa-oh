@@ -91,9 +91,13 @@ class jugador:
     Almacena datos importantes a nivel de jugabilidad, correspondiente a vida, carta actual y sacrificios disponibles
 
     Attributes: 
-        vida (int) : Puntos de vida del jugador. Una vez llega a 0, se considera al jugador como derrotado.
-        card ([str, int, int]) : Carta en juego del jugador. Corresponde a valor entregado al usar 'cardchooser'
-        sacrificios (int) : Puntos de sacrificio. Al usar un punto, el jugador puede cambiar manualmente su carta en juego.
+        vida (int) : Puntos de vida del jugador. Una vez llega a 0, se considera 
+        al jugador como derrotado.
+        card ([str, int, int]) : Carta en juego del jugador. Corresponde a valor 
+        entregado al usar 'cardchooser'
+        sacrificios (int) : Puntos de sacrificio. Al usar un punto, el jugador
+        puede cambiar manualmente su carta en juego. Siempre corresponde a la
+        mitad de la vida original, truncando el valor.
     """
     def __init__(self,n,a,d,vida = 3):
         self.vida = vida
